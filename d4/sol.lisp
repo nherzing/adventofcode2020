@@ -1,20 +1,8 @@
-(defun read-lines (filename)
-  (with-open-file (stream filename)
-    (loop for line = (read-line stream nil)
-          while line
-          collect line)))
+(defpackage :d4
+  (:use :common-lisp)
+  (:use :common))
 
 (defparameter *lines* (read-lines "input.txt"))
-
-(defun split-at (item seq &key (test #'eql))
-  (let ((pos (position item seq :test test)))
-    (if pos
-        (cons (subseq seq 0 pos)
-              (split-at item (subseq seq (1+ pos)) :test test))
-        (list seq))))
-
-(defun join (strings sep)
-  (reduce #'(lambda (s acc) (concatenate 'string s sep acc)) (rest strings) :initial-value (first strings)))
 
 (defun passport-parse (str)
   (mapcar
