@@ -12,7 +12,14 @@
   (let ((pos (position item seq :test test)))
     (if pos
         (cons (subseq seq 0 pos)
-              (split-at item (subseq seq (1+ pos)) :test test))
+              (split-at item (subseq seq (+ pos (length item))) :test test))
+        (list seq))))
+
+(defun string-split-at (item seq)
+  (let ((pos (search item seq)))
+    (if pos
+        (cons (subseq seq 0 pos)
+              (string-split-at item (subseq seq (+ pos (length item)))))
         (list seq))))
 
 (defun join (strings sep)
