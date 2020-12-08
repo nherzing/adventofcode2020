@@ -1,4 +1,4 @@
-(defpackage :d5
+(defpackage :d7
   (:use :common-lisp :common))
 
 (defparameter *lines* (read-lines "input.txt"))
