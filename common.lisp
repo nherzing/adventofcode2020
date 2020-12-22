@@ -24,3 +24,6 @@
 
 (defun join (strings sep)
   (reduce #'(lambda (s acc) (concatenate 'string s sep acc)) (rest strings) :initial-value (first strings)))
+
+(defun upto (max &key (min 0))
+  (loop for i from min to (1- max) collecting i))
